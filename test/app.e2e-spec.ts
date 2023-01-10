@@ -1,9 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
-describe('AppController (e2e)', () => {
+const gql = '/graphql';
+
+describe(gql, () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -15,10 +17,13 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('should get hello', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .post(gql)
+      .send({ query: '{ hello }' })
       .expect(200)
-      .expect('Hello World!');
+      .expect((res) => {
+        expect(res.body.data.hello).toEqual('Hello World!');
+      });
   });
 });
