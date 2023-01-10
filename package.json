@@ -2,9 +2,9 @@
   "name": "onthespot-backend",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Pierre Cavin <me@sherlox.io>",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "GPL-3.0-only",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
