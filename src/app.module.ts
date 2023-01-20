@@ -7,6 +7,7 @@ import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
 import { validate } from './env.validation';
 import { PrismaService } from './prisma.service';
+import { SpotifyModule } from './spotify/spotify.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { PrismaService } from './prisma.service';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
+    SpotifyModule,
   ],
   providers: [AppService, PrismaService, AppResolver],
 })
