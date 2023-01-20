@@ -5,11 +5,14 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
+import { validate } from './env.validation';
 import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      validate,
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
